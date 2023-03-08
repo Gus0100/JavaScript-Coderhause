@@ -1,72 +1,57 @@
 alert("Bienvenidos a SAMSUNG!");
 let nombreCliente = prompt("Ingrese su nombre");
 
-const celulares = [
-    {id: 1, nombre: "S21", precio: 21000},
-    {id: 2, nombre: "S22", precio: 22000},
-    {id: 3, nombre: "S23", precio: 23000},
-]
+const celulares = ["S21","S22", "S23"]
 
-let nombre = prompt("Ingrese el nombre del producto");
-let precio = prompt("Ingrese el precio de del producto");
+const celularesInfo = [
+    {Nombre: "S21", Precio: 21000, Cantidad: 3},
+    {Nombre: "S22", Precio: 22000, Cantidad: 3},
+    {Nombre: "S23", Precio: 23000, Cantidad: 3},
+];
 
-let buscaCelular = {
-    id: celulares.length + 1,
-    nombre,
-    precio,
-};
 
-celulares.push(buscaCelular);
-console.log(celulares);
+class Samsung{
+    constructor(nombre, precio, cantidad, info) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.info = `El modelo elegido es ${this.nombre} el precio es de ${this.precio}`
+    }
+}
+
+const celular21 = new Samsung("S21", 21000, 3);
+const celular22 = new Samsung("S22", 22000, 3);
+const celular23 = new Samsung("S23", 23000, 3);
 
 let auriculares = 500;
 
-function Saludo(){
-    modelo = prompt(`Hola ${nombreCliente} ingrese el nombre de los 3 modelos disponibles: "S23", "S22", "S21"`);
-}
+let modeloElegido = prompt(`Hola ${nombreCliente} estos son los productos disponibles:
+${celulares}
+escriba el nombre del modelo que quiere adquirir`);
 
-Saludo()
-
-function ModeloIncorrecto(){
-    while(modelo != celulares[nombre]){
+function ModeloElegido(){
+    while(modeloElegido != celulares){
         alert("Modelo incorrecto.");
-        modelo = prompt(`Hola ${nombreCliente} ingrese el nombre de los 3 modelos disponibles: "S23", "S22", "S21".`);
+        modeloElegido = prompt(`Hola ${nombreCliente} estos son los productos disponibles:
+        ${celulares}
+        escriba el nombre del modelo que quiere adquirir`);
+        if(modeloElegido == celulares){
+            break
+        }
+        return modeloElegido
     }
-    return modelo;
 }
 
-ModeloIncorrecto()
+ModeloElegido()
 
-/* function ElegirModelo(){
-    switch(modelo){
-        case celulares[nombre]:
-            alert(`${nombreCliente} El precio del modelo "S23" es de $${S23}.`);
-            preguntaCarrito = prompt("¿Queres añadirlo al carrito?")
-            break;
-
-        case "S22":
-            alert(`${nombreCliente} El precio del modelo "S22" es de $${S22}.`);
-            preguntaCarrito = prompt("¿Queres añadirlo al carrito?")
-            break;
+function InfoModeloElegido(){
     
-        case "S21":
-            alert(`${nombreCliente} El precio del modelo "S21" es de $${S21}.`);
-            preguntaCarrito = prompt("¿Queres añadirlo al carrito?")
-            break;
-    }
-} */
-
-function ElegirModelo(){
-    if(modelo == celulares[nombre]){
-        alert(`${nombreCliente} El precio del modelo ${celulares.nombre} es de $${celulares.precio}`)
-    }
 }
 
+InfoModeloElegido()
 
-ElegirModelo()
 
-
-promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modelo} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
+let promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modelo} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
 
 function OpcionCarrito(){
     if(preguntaCarrito == "si"){
