@@ -45,6 +45,18 @@ function ModeloElegido() {
 
 ModeloElegido()
 
+function OpcionCarrito() {
+    let opcionCarrito = prompt("¿Quiere agregarlo al carrito?")
+    if (opcionCarrito == "si") {
+        /* alert(`${celular21.nombre} añadido al carrito con éxito`); */
+        promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modeloElegido} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
+    } else {
+        alert("bueno chau");
+    }
+}
+
+OpcionCarrito()
+
 function InfoModeloElegido() {
     switch (modeloElegido) {
         case "1":
@@ -61,19 +73,6 @@ function InfoModeloElegido() {
 
 InfoModeloElegido()
 
-
-let opcionCarrito = prompt("¿Quiere agregarlo al carrito?")
-
-function OpcionCarrito() {
-    if (opcionCarrito == "si") {
-        alert(`${celular21.nombre} añadido al carrito con éxito`);
-        promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modelo} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
-    } else {
-        alert("bueno chau");
-    }
-}
-
-OpcionCarrito()
 
 let promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modelo} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
 
