@@ -26,20 +26,20 @@ const celular23 = new Samsung("3", "S23", 23000, 3);
 
 let auriculares = 500;
 
-let modeloElegido = prompt(`Hola ${nombreCliente}, estos son los productos disponibles:
-1. S21
-2. S22
-3. S23
-Ingrese el número correspondiente al modelo que desea adquirir:`);
+function ElegirModelo(){
+    modeloElegido = prompt(`Hola ${nombreCliente}, estos son los productos disponibles:
+    1. S21
+    2. S22
+    3. S23
+    Ingrese el número correspondiente al modelo que desea adquirir:`);
+}
+
+ElegirModelo()
 
 function ModeloElegido() {
-    while (modeloElegido != celularesInfo) {
+    while (modeloElegido != "1" && "2" && "3") {
         alert("Modelo incorrecto.");
-        modeloElegido = prompt(`Hola ${nombreCliente}, estos son los productos disponibles:
-        1. S21
-        2. S22
-        3. S23
-        Ingrese el número correspondiente al modelo que desea adquirir:`);
+        ElegirModelo()
     }
 }
 
@@ -50,19 +50,13 @@ function InfoModeloElegido() {
         case "1":
             alert(celular21.info);
             break;
-
         case "2":
             alert(celular22.info);
             break;
-
         case "3":
             alert(celular23.info);
             break;
-
-        default:
-            ModeloElegido();
     }
-    return modeloElegido;
 }
 
 InfoModeloElegido()
@@ -70,21 +64,18 @@ InfoModeloElegido()
 
 let opcionCarrito = prompt("¿Quiere agregarlo al carrito?")
 
-let promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modelo} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
-
-
 function OpcionCarrito() {
-    if (preguntaCarrito == "si") {
-        alert(`${modelo} añadido al carrito con éxito`);
+    if (opcionCarrito == "si") {
+        alert(`${celular21.nombre} añadido al carrito con éxito`);
         promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modelo} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
     } else {
         alert("bueno chau");
     }
 }
 
-
 OpcionCarrito()
 
+let promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modelo} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
 
 let resultado = (S23 && S22 && S21 + auriculares)
 
@@ -97,6 +88,8 @@ function OpcionPromocion() {
         alert(`Hasta luego ${nombreCliente}, que lo disfrute`);
     }
 }
+
+OpcionPromocion()
 
 let otroModelo = prompt(`${nombreCliente} ¿Quieres elegir otro modelo?`);
 
@@ -114,4 +107,3 @@ function OpcionOtroModelo() {
 OpcionOtroModelo()
 OpcionPromocion()
 ModeloIncorrecto()
-ElegirModelo()
