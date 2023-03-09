@@ -9,6 +9,7 @@ const celularesInfo = [
     {ID: 3, Nombre: "S23", Precio: 23000, Cantidad: 3 },
 ];
 
+const celularesEncargados = [];
 
 class Samsung {
     constructor(id, nombre, precio, cantidad, info) {
@@ -31,10 +32,26 @@ function ElegirModelo(){
     1. S21
     2. S22
     3. S23
-    Ingrese el número correspondiente al modelo que desea adquirir:`);
+    Ingrese el número correspondiente al modelo que desea adquirir.
+    Si quiere encargar un modelo en especial escriba "encargar"`);
 }
 
 ElegirModelo()
+
+function EncargarModelo(){
+    if(modeloElegido == "encargar"){
+        let modeloEncargado = prompt(`Ingrese el nombre del modelo a encargar`);
+        while(celulares.includes(modeloEncargado)){
+            alert("Disculpe pero ese modelo ya esta disponible");
+            let volverElegir = prompt(`¿Quiere volver ingresar otro modelo? Responda "si" o "no"`)
+            if(volverElegir == "si"){
+                modeloEncargado = prompt(`Ingrese el nombre del modelo a encargar`);
+            }
+        }
+    }
+}
+
+EncargarModelo()
 
 function ModeloElegido() {
     while (modeloElegido != "1" && "2" && "3") {
@@ -48,7 +65,7 @@ ModeloElegido()
 function OpcionCarrito() {
     let opcionCarrito = prompt("¿Quiere agregarlo al carrito?")
     if (opcionCarrito == "si") {
-        /* alert(`${celular21.nombre} añadido al carrito con éxito`); */
+        alert(`${celular21.nombre} añadido al carrito con éxito`);
         promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modeloElegido} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
     } else {
         alert("bueno chau");
