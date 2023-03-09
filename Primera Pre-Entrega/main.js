@@ -1,6 +1,10 @@
+// Mostrar mensaje de bienvenida
 alert("Bienvenidos a SAMSUNG!");
+
+// Solicitar nombre del cliente
 let nombreCliente = prompt("Ingrese su nombre");
 
+// Definir modelos de celulares y su información
 const celulares = ["S21", "S22", "S23"]
 
 const celularesInfo = [
@@ -9,6 +13,7 @@ const celularesInfo = [
     {ID: 3, Nombre: "S23", Precio: 23000, Cantidad: 3 },
 ];
 
+// Definir modelos encargados, precio de auriculares y clase Samsung
 const MODELOS_ENCARGADOS = [];
 
 const AURICULARES_PRECIO = 500;
@@ -23,10 +28,12 @@ class Samsung {
     }
 }
 
+// Crear objetos de los modelos de celulares
 const celular21 = new Samsung("1", "S21", 21000, 3);
 const celular22 = new Samsung("2", "S22", 22000, 3);
 const celular23 = new Samsung("3", "S23", 23000, 3);
 
+// Función para elegir modelo de celular
 function ElegirModelo(){
     modeloElegido = prompt(`Hola ${nombreCliente}, estos son los productos disponibles:
     1. S21
@@ -38,6 +45,7 @@ function ElegirModelo(){
 
 ElegirModelo()
 
+// Función para encargar modelo de celular
 function EncargarModelo(){
     if(modeloElegido == "si"){
         modeloEncargado = prompt(`Ingrese el nombre del modelo a encargar`);
@@ -46,6 +54,7 @@ function EncargarModelo(){
 
 EncargarModelo()
 
+// Función para buscar modelo de celular
 function BuscandoModelo(){
     if(celulares.includes(modeloEncargado)){
         alert("Disculpe pero ese modelo ya esta disponible");
@@ -63,7 +72,7 @@ function BuscandoModelo(){
 BuscandoModelo()
 
 function ModeloElegido() {
-    while (modeloElegido != "1" && "2" && "3") {
+    while (modeloElegido != "1" && modeloElegido != "2" && modeloElegido != "3") {
         alert("Modelo incorrecto.");
         ElegirModelo()
     }
