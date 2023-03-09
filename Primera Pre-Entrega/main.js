@@ -9,7 +9,9 @@ const celularesInfo = [
     {ID: 3, Nombre: "S23", Precio: 23000, Cantidad: 3 },
 ];
 
-const celularesEncargados = [];
+const MODELOS_ENCARGADOS = [];
+
+const AURICULARES_PRECIO = 500;
 
 class Samsung {
     constructor(id, nombre, precio, cantidad, info) {
@@ -25,33 +27,40 @@ const celular21 = new Samsung("1", "S21", 21000, 3);
 const celular22 = new Samsung("2", "S22", 22000, 3);
 const celular23 = new Samsung("3", "S23", 23000, 3);
 
-let auriculares = 500;
-
 function ElegirModelo(){
     modeloElegido = prompt(`Hola ${nombreCliente}, estos son los productos disponibles:
     1. S21
     2. S22
     3. S23
     Ingrese el número correspondiente al modelo que desea adquirir.
-    Si quiere encargar un modelo en especial escriba "encargar"`);
+    Si quiere encargar un modelo en especial escriba "si"`);
 }
 
 ElegirModelo()
 
 function EncargarModelo(){
-    if(modeloElegido == "encargar"){
-        let modeloEncargado = prompt(`Ingrese el nombre del modelo a encargar`);
-        while(celulares.includes(modeloEncargado)){
-            alert("Disculpe pero ese modelo ya esta disponible");
-            let volverElegir = prompt(`¿Quiere volver ingresar otro modelo? Responda "si" o "no"`)
-            if(volverElegir == "si"){
-                modeloEncargado = prompt(`Ingrese el nombre del modelo a encargar`);
-            }
-        }
+    if(modeloElegido == "si"){
+        modeloEncargado = prompt(`Ingrese el nombre del modelo a encargar`);
     }
 }
 
 EncargarModelo()
+
+function BuscandoModelo(){
+    if(celulares.includes(modeloEncargado)){
+        alert("Disculpe pero ese modelo ya esta disponible");
+        let volverElegir = prompt(`¿Quiere volver ingresar otro modelo? Responda "si" o "no"`);
+        if (volverElegir === "si") {
+            EncargarModelo();
+        }else{
+        MODELOS_ENCARGADOS.push(modeloEncargado);
+        }
+    }else{
+        MODELOS_ENCARGADOS.push(modeloEncargado);
+    }
+}
+
+BuscandoModelo()
 
 function ModeloElegido() {
     while (modeloElegido != "1" && "2" && "3") {
