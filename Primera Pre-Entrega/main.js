@@ -40,7 +40,8 @@ function ElegirModelo(){
     2. S22
     3. S23
     Ingrese el número correspondiente al modelo que desea adquirir.
-    Si quiere encargar un modelo en especial escriba "si"`);
+    O si quiere encargar un modelo que no se encuentra en la lista de productos disponibles:
+    Escriba "si"`);
 }
 
 ElegirModelo()
@@ -59,7 +60,7 @@ EncargarModelo()
 function AgregarModeloEncargo(){
     if(celulares.includes(modeloEncargado)){
         const respuesta = prompt(`Lo sentimos, el modelo ${modeloEncargado} ya está disponible en la tienda. ¿Desea encargar otro modelo en la tienda? Conteste "si" o "no"`);
-        if (respuesta == "si"){
+        if(respuesta == "si"){
             EncargarModelo();
             AgregarModeloEncargo();
         }else{
@@ -67,19 +68,13 @@ function AgregarModeloEncargo(){
             EncargarModelo();
             AgregarModeloEncargo();
         }
-    } else {
-        const modelo = celularesInfo.find(m => m.Nombre === modeloEncargado);
-        if (modelo){
-            MODELOS_ENCARGADOS.push(modelo);
-            alert(`El modelo ${modeloEncargado} ha sido encargado.`);
-        } else {
-            alert(`Lo sentimos, el modelo ${modeloEncargado} no está disponible.`);
-        }
+    }else{
+        MODELOS_ENCARGADOS.push(modeloEncargado);
+        alert(`El modelo ${modeloEncargado} ha sido encargado.`);
     }
-    }
+}
 
 AgregarModeloEncargo()
-
 
 function ModeloElegido() {
     while (modeloElegido != "1" && modeloElegido != "2" && modeloElegido != "3") {
@@ -90,18 +85,6 @@ function ModeloElegido() {
 }
 
 ModeloElegido()
-
-function OpcionCarrito() {
-    let opcionCarrito = prompt("¿Quiere agregarlo al carrito?")
-    if (opcionCarrito == "si") {
-        alert(`${celular21.nombre} añadido al carrito con éxito`);
-        promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modeloElegido} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
-    } else {
-        alert("bueno chau");
-    }
-}
-
-OpcionCarrito()
 
 function InfoModeloElegido() {
     switch (modeloElegido) {
@@ -118,6 +101,19 @@ function InfoModeloElegido() {
 }
 
 InfoModeloElegido()
+
+function OpcionCarrito() {
+    let opcionCarrito = prompt("¿Quiere agregarlo al carrito?")
+    if (opcionCarrito == "si") {
+        alert(`${celular21.nombre} añadido al carrito con éxito`);
+        promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modeloElegido} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
+    } else {
+        alert("bueno chau");
+    }
+}
+
+OpcionCarrito()
+
 
 
 let promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modelo} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
