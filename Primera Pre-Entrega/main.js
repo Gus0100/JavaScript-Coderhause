@@ -13,6 +13,8 @@ const celularesInfo = [
     {ID: 3, Nombre: "S23", Precio: 23000, Cantidad: 3 },
 ];
 
+const modeloDisponibleMercado = ["Z Flip4", "A23", "A53", "A72", "A52"];
+
 // Definir modelos encargados, precio de auriculares y clase Samsung
 const MODELOS_ENCARGADOS = [];
 
@@ -34,17 +36,15 @@ const celular22 = new Samsung("2", "S22", 22000, 3);
 const celular23 = new Samsung("3", "S23", 23000, 3);
 
 // Función para elegir modelo de celular
-function ElegirModelo(){
-    modeloElegido = prompt(`Hola ${nombreCliente}, estos son los productos disponibles:
-    1. S21
-    2. S22
-    3. S23
-    Ingrese el número correspondiente al modelo que desea adquirir.
-    O si quiere encargar un modelo que no se encuentra en la lista de productos disponibles:
-    Escriba "si"`);
-}
 
-ElegirModelo()
+let modeloElegido = prompt(`Hola ${nombreCliente}, actualmente contamos con el stock de estos productos:
+1. S21
+2. S22
+3. S23
+Por favor ingrese el número correspondiente al modelo que desea adquirir.
+O si quiere encargar un modelo que no se encuentra en la lista de productos disponibles:
+Escriba "si"`);
+
 
 // Función para encargar modelo de celular
 function EncargarModelo(){
@@ -69,6 +69,7 @@ function AgregarModeloEncargo(){
             AgregarModeloEncargo();
         }
     }else{
+        if(modeloDisponibleMercado == modeloEncargado)
         MODELOS_ENCARGADOS.push(modeloEncargado);
         alert(`El modelo ${modeloEncargado} ha sido encargado.`);
     }
@@ -78,10 +79,11 @@ AgregarModeloEncargo()
 
 function ModeloElegido() {
     while (modeloElegido != "1" && modeloElegido != "2" && modeloElegido != "3") {
-        alert("Modelo incorrecto.");
-        ElegirModelo()
-
+        alert("Numero Incorrecto");
+        ElegirModelo();
+        ModeloElegido();
     }
+    return modeloElegido
 }
 
 ModeloElegido()
