@@ -50,31 +50,42 @@ function EncargarModelo(){
     if(modeloElegido == "si"){
         modeloEncargado = prompt(`Ingrese el nombre del modelo a encargar`);
     }
+    return modeloEncargado
 }
 
 EncargarModelo()
 
 // Función para buscar modelo de celular
-function BuscandoModelo(){
+function AgregarModeloEncargo(){
     if(celulares.includes(modeloEncargado)){
-        alert("Disculpe pero ese modelo ya esta disponible");
-        let volverElegir = prompt(`¿Quiere volver ingresar otro modelo? Responda "si" o "no"`);
-        if (volverElegir === "si") {
+        const respuesta = prompt(`Lo sentimos, el modelo ${modeloEncargado} ya está disponible en la tienda. ¿Desea encargar otro modelo en la tienda? Conteste "si" o "no"`);
+        if (respuesta == "si"){
             EncargarModelo();
+            AgregarModeloEncargo();
         }else{
-        MODELOS_ENCARGADOS.push(modeloEncargado);
+            ElegirModelo();
+            EncargarModelo();
+            AgregarModeloEncargo();
         }
-    }else{
-        MODELOS_ENCARGADOS.push(modeloEncargado);
+    } else {
+        const modelo = celularesInfo.find(m => m.Nombre === modeloEncargado);
+        if (modelo){
+            MODELOS_ENCARGADOS.push(modelo);
+            alert(`El modelo ${modeloEncargado} ha sido encargado.`);
+        } else {
+            alert(`Lo sentimos, el modelo ${modeloEncargado} no está disponible.`);
+        }
     }
-}
+    }
 
-BuscandoModelo()
+AgregarModeloEncargo()
+
 
 function ModeloElegido() {
     while (modeloElegido != "1" && modeloElegido != "2" && modeloElegido != "3") {
         alert("Modelo incorrecto.");
         ElegirModelo()
+
     }
 }
 
