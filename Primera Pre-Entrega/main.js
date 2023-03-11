@@ -63,7 +63,9 @@ OpcionIncorrecta()
 // Función para encargar modelo de celular
 function EncargarModelo(){
     if(eligeUnModelo == "si" || eligeUnModelo == "SI" || eligeUnModelo == "Si"){
-        modEncargado = prompt(`Ingrese el nombre del modelo a encargar`);
+        modEncargado = prompt(`Estos son los modelos disponible en el marcado para encargar:
+        ${modeloDisponibleMercado}
+        Ingrese el nombre del modelo a encargar`);
     }
     return modEncargado
 }
@@ -86,25 +88,35 @@ function AgregarModeloEncargo(){
             AgregarModeloEncargo();
         }else{
             alert("Opcion Incorrecta");
+            AgregarModeloEncargo();
         }
-    }else if(modEncargado == modeloDisponibleMercado){
+    }else if(modeloDisponibleMercado.includes(modEncargado)){
         MODELOS_ENCARGADOS.push(modEncargado);
         alert(`El modelo ${modEncargado} ha sido encargado.`);
+        eligeUnModelo = prompt(`Hola ${nombreCliente}, actualmente contamos con el stock de estos productos:
+        1. S21
+        2. S22
+        3. S23
+        Por favor ingrese el número correspondiente al modelo que desea adquirir.`)
     }else{
         alert(`Lo sentimos, el modelo ${modEncargado} no existe o no esta disponible en el mercado.
         Escriba:
         "   1  ". Si quiere volver a encargar probando otro modelo.
             O
         "   2  ". Si quiere volver al menu principal.`);
-        if(respuesta == "si"){
+        if(respuesta == "1"){
             EncargarModelo();
             AgregarModeloEncargo();
-        }else{
+        }else if(respuesta == "2"){
             ModeloElegido();
             EncargarModelo();
             AgregarModeloEncargo();
+        }else{
+            alert("Opcion Incorrecta");
+            AgregarModeloEncargo();
         }
     }
+    return eligeUnModelo
 }
 
 AgregarModeloEncargo()
