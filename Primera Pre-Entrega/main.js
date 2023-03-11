@@ -37,59 +37,81 @@ const celular23 = new Samsung("3", "S23", 23000, 3);
 
 // Función para elegir modelo de celular
 
-let modeloElegido = prompt(`Hola ${nombreCliente}, actualmente contamos con el stock de estos productos:
-1. S21
-2. S22
-3. S23
-Por favor ingrese el número correspondiente al modelo que desea adquirir.
-O si quiere encargar un modelo que no se encuentra en la lista de productos disponibles:
-Escriba "si"`);
+function ModeloElegido(){
+    let eligeUnModelo = prompt(`Hola ${nombreCliente}, actualmente contamos con el stock de estos productos:
+    1. S21
+    2. S22
+    3. S23
+    Por favor ingrese el número correspondiente al modelo que desea adquirir.
+    O si quiere encargar un modelo que no se encuentra en la lista de productos disponibles escriba "si"`);
+    return eligeUnModelo
+}
 
+let eligeUnModelo = ModeloElegido()
+
+function OpcionIncorrecta(){
+    if(eligeUnModelo != "1" && eligeUnModelo != "2" && eligeUnModelo != "3" && eligeUnModelo != "si" && eligeUnModelo != "SI" && eligeUnModelo != "Si"){
+        alert("Opcion Incorrecta");
+        ElegirModelo();
+        ModeloElegido();
+    }
+    return eligeUnModelo
+}
+
+OpcionIncorrecta()
 
 // Función para encargar modelo de celular
 function EncargarModelo(){
-    if(modeloElegido == "si"){
-        modeloEncargado = prompt(`Ingrese el nombre del modelo a encargar`);
+    if(eligeUnModelo == "si" || eligeUnModelo == "SI" || eligeUnModelo == "Si"){
+        modEncargado = prompt(`Ingrese el nombre del modelo a encargar`);
     }
-    return modeloEncargado
+    return modEncargado
 }
 
 EncargarModelo()
 
 // Función para buscar modelo de celular
 function AgregarModeloEncargo(){
-    if(celulares.includes(modeloEncargado)){
-        const respuesta = prompt(`Lo sentimos, el modelo ${modeloEncargado} ya está disponible en la tienda. ¿Desea encargar otro modelo en la tienda? Conteste "si" o "no"`);
+    if(celulares.includes(modEncargado)){
+        let respuesta = prompt(`Lo sentimos, el modelo ${modEncargado} ya está disponible en la tienda. Escriba:
+        "   1  ". Si quiere volver a encargar probando otro modelo.
+            O
+        "   2  ". Si quiere volver al menu principal.`);
+        if(respuesta == "1"){
+            EncargarModelo();
+            AgregarModeloEncargo();
+        }else if(respuesta == "2"){
+            ModeloElegido();
+            EncargarModelo();
+            AgregarModeloEncargo();
+        }else{
+            alert("Opcion Incorrecta");
+        }
+    }else if(modEncargado == modeloDisponibleMercado){
+        MODELOS_ENCARGADOS.push(modEncargado);
+        alert(`El modelo ${modEncargado} ha sido encargado.`);
+    }else{
+        alert(`Lo sentimos, el modelo ${modEncargado} no existe o no esta disponible en el mercado.
+        Escriba:
+        "   1  ". Si quiere volver a encargar probando otro modelo.
+            O
+        "   2  ". Si quiere volver al menu principal.`);
         if(respuesta == "si"){
             EncargarModelo();
             AgregarModeloEncargo();
         }else{
-            ElegirModelo();
+            ModeloElegido();
             EncargarModelo();
             AgregarModeloEncargo();
         }
-    }else{
-        if(modeloDisponibleMercado == modeloEncargado)
-        MODELOS_ENCARGADOS.push(modeloEncargado);
-        alert(`El modelo ${modeloEncargado} ha sido encargado.`);
     }
 }
 
 AgregarModeloEncargo()
 
-function ModeloElegido() {
-    while (modeloElegido != "1" && modeloElegido != "2" && modeloElegido != "3") {
-        alert("Numero Incorrecto");
-        ElegirModelo();
-        ModeloElegido();
-    }
-    return modeloElegido
-}
-
-ModeloElegido()
 
 function InfoModeloElegido() {
-    switch (modeloElegido) {
+    switch (eligeUnModelo) {
         case "1":
             alert(celular21.info);
             break;
