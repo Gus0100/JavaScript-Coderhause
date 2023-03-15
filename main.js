@@ -20,6 +20,8 @@ const MODELOS_ENCARGADOS = [];
 
 const AURICULARES_PRECIO = 500;
 
+let carrito = [];
+
 class Samsung {
     constructor(id, nombre, precio, cantidad, info) {
         this.id = id;
@@ -135,6 +137,19 @@ function InfoModeloElegido() {
 
 InfoModeloElegido()
 
+//A partir de aca no pude lo pude resolver :(
+let agregarAlCarrito = confirm("¿Desea agregar este producto al carrito?");
+
+function CarritoDePruductoElegido(productoVendido){
+    if (agregarAlCarrito) {
+        let productoElegido = celularesInfo[parseInt(eligeUnModelo) - 1];
+        carrito.push({});
+        eligeUnModelo.vender();
+    }
+}
+
+CarritoDePruductoElegido()
+
 function OpcionCarrito() {
     let opcionCarrito = prompt("¿Quiere agregarlo al carrito?")
     if (opcionCarrito == "si") {
@@ -143,9 +158,6 @@ function OpcionCarrito() {
         alert("bueno chau");
     }
 }
-
-OpcionCarrito()
-
 
 OpcionCarrito()
 
