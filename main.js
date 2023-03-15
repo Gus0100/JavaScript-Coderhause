@@ -8,9 +8,9 @@ let nombreCliente = prompt("Ingrese su nombre");
 const celulares = ["S21", "S22", "S23"]
 
 const celularesInfo = [
-    {ID: 1 ,Nombre: "S21", Precio: 21000, Cantidad: 3 },
-    {ID: 2, Nombre: "S22", Precio: 22000, Cantidad: 3 },
-    {ID: 3, Nombre: "S23", Precio: 23000, Cantidad: 3 },
+    {Nombre: "S21", Precio: 21000, Cantidad: 3 },
+    {Nombre: "S22", Precio: 22000, Cantidad: 3 },
+    {Nombre: "S23", Precio: 23000, Cantidad: 3 },
 ];
 
 const modeloDisponibleMercado = ["Z Flip4", "A23", "A53", "A72", "A52"];
