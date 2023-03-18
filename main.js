@@ -121,36 +121,51 @@ if(eligeUnModelo == "si" || eligeUnModelo == "SI" || eligeUnModelo == "Si"){
 }
 
 
-function InfoModeloElegido() {
-    switch (eligeUnModelo) {
-        case "1":
-            alert(celular21.info);
-            break;
-        case "2":
-            alert(celular22.info);
-            break;
-        case "3":
-            alert(celular23.info);
-            break;
+function ComprarCelular(){
+    let modeloElegido;
+    if(eligeUnModelo == "1"){
+        modeloElegido = celular21;
+    }else if(eligeUnModelo == "2"){
+        modeloElegido = celular22;
+    }else{
+        modeloElegido = celular23;
+    }
+
+    // Mostrar información del modelo elegido
+    alert(modeloElegido.info);
+
+    // Preguntar si el cliente quiere agregar el producto al carrito
+    let respuesta = prompt(`¿Quiere agregar ${modeloElegido.nombre} al carrito? Escriba "SI" si quiere agregarlo, de lo contrario, escriba "NO".`);
+
+    if (respuesta.toUpperCase() == "SI") {
+        carrito.push(modeloElegido);
+        alert(`El modelo ${modeloElegido.nombre} se ha agregado al carrito.`);
+    }
+
+    // Vender un modelo de celular
+    modeloElegido.vender();
+    alert(`Quedan ${modeloElegido.cantidad} unidades del modelo ${modeloElegido.nombre}.`);
+
+    // Preguntar si el cliente quiere comprar otro celular
+    respuesta = prompt("¿Quiere comprar otro celular? Escriba 'SI' si quiere comprar otro, de lo contrario, escriba 'NO'.");
+
+    if (respuesta.toUpperCase() == "SI") {
+        eligeUnModelo = prompt(`Hola ${nombreCliente}, actualmente contamos con el stock de estos productos:
+        1). S21
+        2). S22
+        3). S23
+        Por favor ingrese el número correspondiente al modelo que desea adquirir.`);
+        OpcionIncorrecta();
+        ComprarCelular();
+    } else {
+        alert("Gracias por su compra.");
     }
 }
 
-InfoModeloElegido()
+ComprarCelular()
 
-//A partir de aca no pude lo pude resolver :(
-let agregarAlCarrito = confirm("¿Desea agregar este producto al carrito?");
 
-function CarritoDePruductoElegido(productoVendido){
-    if (agregarAlCarrito) {
-        let productoElegido = celularesInfo[parseInt(eligeUnModelo) - 1];
-        carrito.push({});
-        eligeUnModelo.vender();
-    }
-}
-
-CarritoDePruductoElegido()
-
-function OpcionCarrito() {
+/* function OpcionCarrito() {
     let opcionCarrito = prompt("¿Quiere agregarlo al carrito?")
     if (opcionCarrito == "si") {
         alert(`${celular21.nombre} añadido al carrito con éxito`);
@@ -187,9 +202,3 @@ function OpcionOtroModelo() {
     }
     return modelo;
 }
-
-
-
-OpcionOtroModelo()
-OpcionPromocion()
-ModeloIncorrecto()
