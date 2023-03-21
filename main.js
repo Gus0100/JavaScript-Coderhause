@@ -8,9 +8,9 @@ let nombreCliente = prompt("Ingrese su nombre");
 const celulares = ["S21", "S22", "S23"]
 
 const celularesInfo = [
-    {Nombre: "S21", Precio: 21000, Cantidad: 3 },
-    {Nombre: "S22", Precio: 22000, Cantidad: 3 },
-    {Nombre: "S23", Precio: 23000, Cantidad: 3 },
+    { Nombre: "S21", Precio: 21000, Cantidad: 3 },
+    { Nombre: "S22", Precio: 22000, Cantidad: 3 },
+    { Nombre: "S23", Precio: 23000, Cantidad: 3 },
 ];
 
 const modeloDisponibleMercado = ["Z Flip4", "A23", "A53", "A72", "A52"];
@@ -28,10 +28,10 @@ class Samsung {
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
-        this.info = `El modelo elegido es ${this.nombre} el precio es de ${this.precio} y contamos con ${this.cantidad}`
+        this.info = `Modelo: ${this.nombre} Precio: ${this.precio}`
     }
 
-    vender(){
+    vender() {
         this.cantidad -= 1;
     }
 }
@@ -49,15 +49,15 @@ let eligeUnModelo = prompt(`Hola ${nombreCliente}, actualmente contamos con el s
     Por favor ingrese el número correspondiente al modelo que desea adquirir.
     O si quiere encargar un modelo que no se encuentra en la lista de productos disponibles escriba "si"`);
 
-function OpcionIncorrecta(){
-    if(eligeUnModelo != "1" && eligeUnModelo != "2" && eligeUnModelo != "3" && eligeUnModelo != "si" && eligeUnModelo != "SI" && eligeUnModelo != "Si"){
+function OpcionIncorrecta() {
+    if (eligeUnModelo != "1" && eligeUnModelo != "2" && eligeUnModelo != "3" && eligeUnModelo != "si" && eligeUnModelo != "SI" && eligeUnModelo != "Si") {
         alert("Opcion Incorrecta");
         eligeUnModelo = prompt(`Hola ${nombreCliente}, actualmente contamos con el stock de estos productos:
-    1). S21
-    2). S22
-    3). S23
-    Por favor ingrese el número correspondiente al modelo que desea adquirir.
-    O si quiere encargar un modelo que no se encuentra en la lista de productos disponibles escriba "si"`);
+        1). S21
+        2). S22
+        3). S23
+        Por favor ingrese el número correspondiente al modelo que desea adquirir.
+        O si quiere encargar un modelo que no se encuentra en la lista de productos disponibles escriba "si"`);
         OpcionIncorrecta()
     }
     return eligeUnModelo
@@ -67,27 +67,32 @@ OpcionIncorrecta()
 
 
 // Función para buscar modelo de celular
-function AgregarModeloEncargo(){
+function AgregarModeloEncargo() {
     let modEncargado = prompt(`Estos son los modelos disponible en el marcado para encargar:
     ${modeloDisponibleMercado}
     Ingrese el nombre del modelo a encargar`);
-    if(celulares.includes(modEncargado)){
+    if (celulares.includes(modEncargado)) {
         let respuesta = prompt(`Lo sentimos, el modelo ${modEncargado} ya está disponible en la tienda. Escriba:
         "   1  ". Si quiere volver a encargar probando otro modelo.
             O
         "   2  ". Si quiere volver al menu principal.`);
-        if(respuesta == "1"){
+        if (respuesta == "1") {
             EncargarModelo();
             AgregarModeloEncargo();
-        }else if(respuesta == "2"){
-            ModeloElegido();
+        } else if (respuesta == "2") {
+            eligeUnModelo = prompt(`Hola ${nombreCliente}, actualmente contamos con el stock de estos productos:
+            1). S21
+            2). S22
+            3). S23
+            Por favor ingrese el número correspondiente al modelo que desea adquirir.
+            O si quiere encargar un modelo que no se encuentra en la lista de productos disponibles escriba "si"`);
             EncargarModelo();
             AgregarModeloEncargo();
-        }else{
+        } else {
             alert("Opcion Incorrecta");
             AgregarModeloEncargo();
         }
-    }else if(modeloDisponibleMercado.includes(modEncargado)){
+    } else if (modeloDisponibleMercado.includes(modEncargado)) {
         MODELOS_ENCARGADOS.push(modEncargado);
         alert(`El modelo ${modEncargado} ha sido encargado.`);
         eligeUnModelo = prompt(`Hola ${nombreCliente}, actualmente contamos con el stock de estos productos:
@@ -95,20 +100,25 @@ function AgregarModeloEncargo(){
         2). S22
         3). S23
         Por favor ingrese el número correspondiente al modelo que desea adquirir.`)
-    }else{
+    } else {
         let respuesta = prompt(`Lo sentimos, el modelo ${modEncargado} no existe o no esta disponible en el mercado.
         Escriba:
         "   1  ". Si quiere volver a encargar probando otro modelo.
             O
         "   2  ". Si quiere volver al menu principal.`);
-        if(respuesta == "1"){
+        if (respuesta == "1") {
             EncargarModelo();
             AgregarModeloEncargo();
-        }else if(respuesta == "2"){
-            ModeloElegido();
+        } else if (respuesta == "2") {
+            eligeUnModelo = prompt(`Hola ${nombreCliente}, actualmente contamos con el stock de estos productos:
+            1). S21
+            2). S22
+            3). S23
+            Por favor ingrese el número correspondiente al modelo que desea adquirir.
+            O si quiere encargar un modelo que no se encuentra en la lista de productos disponibles escriba "si"`);
             EncargarModelo();
             AgregarModeloEncargo();
-        }else{
+        } else {
             alert("Opcion Incorrecta");
             AgregarModeloEncargo();
         }
@@ -116,19 +126,21 @@ function AgregarModeloEncargo(){
     return eligeUnModelo
 }
 
-if(eligeUnModelo == "si" || eligeUnModelo == "SI" || eligeUnModelo == "Si"){
+if (eligeUnModelo.toUpperCase() == "SI") {
     AgregarModeloEncargo()
 }
 
 
-function ComprarCelular(){
+function ComprarCelular() {
     let modeloElegido;
-    if(eligeUnModelo == "1"){
+    if (eligeUnModelo == "1") {
         modeloElegido = celular21;
-    }else if(eligeUnModelo == "2"){
+    } else if (eligeUnModelo == "2") {
         modeloElegido = celular22;
-    }else{
+    } else if (eligeUnModelo == "3") {
         modeloElegido = celular23;
+    }else{
+        alert("Opción incorrecta");
     }
 
     // Mostrar información del modelo elegido
@@ -140,6 +152,13 @@ function ComprarCelular(){
     if (respuesta.toUpperCase() == "SI") {
         carrito.push(modeloElegido);
         alert(`El modelo ${modeloElegido.nombre} se ha agregado al carrito.`);
+    } else {
+        eligeUnModelo = prompt(`${nombreCliente}, actualmente contamos con el stock de estos productos:
+            1). S21
+            2). S22
+            3). S23
+            Por favor ingrese el número correspondiente al modelo que desea adquirir.
+            O si quiere encargar un modelo que no se encuentra en la lista de productos disponibles escriba "si"`);
     }
 
     // Vender un modelo de celular
@@ -150,7 +169,7 @@ function ComprarCelular(){
     respuesta = prompt("¿Quiere comprar otro celular? Escriba 'SI' si quiere comprar otro, de lo contrario, escriba 'NO'.");
 
     if (respuesta.toUpperCase() == "SI") {
-        eligeUnModelo = prompt(`Hola ${nombreCliente}, actualmente contamos con el stock de estos productos:
+        eligeUnModelo = prompt(`${nombreCliente}, actualmente contamos con el stock de estos productos:
         1). S21
         2). S22
         3). S23
@@ -158,47 +177,46 @@ function ComprarCelular(){
         OpcionIncorrecta();
         ComprarCelular();
     } else {
-        alert("Gracias por su compra.");
+        alert(`Gracias ${nombreCliente}`);
     }
 }
 
 ComprarCelular()
 
-
-/* function OpcionCarrito() {
-    let opcionCarrito = prompt("¿Quiere agregarlo al carrito?")
-    if (opcionCarrito == "si") {
-        alert(`${celular21.nombre} añadido al carrito con éxito`);
-    } else {
-        alert("bueno chau");
+// Función para actualizar el carrito
+function ActualizarCarrito() {
+    let carritoMensaje = `!El carrito de ${nombreCliente}!\n`;
+    let totalCarrito = 0;
+    for (let i = 0; i < carrito.length; i++) {
+        let modelo = carrito[i];
+        carritoMensaje += `${modelo.info}\n`;
+        totalCarrito += modelo.precio;
     }
+    alert(`Su carrito contiene los siguientes modelos:\n${carritoMensaje}Total: $${totalCarrito}`);
 }
 
-OpcionCarrito()
+ActualizarCarrito()
 
-let promocion = prompt(`${nombreCliente} no te pierdas esta oportunidad única llevando un ${modelo} se te aplica un descuento a unos auriculares por $${auriculares} \n ¿Quieres llevarlo?`);
-
-let resultado = (S23 && S22 && S21 + auriculares)
-
-function OpcionPromocion() {
-    if (promocion == "si") {
-        alert(`Tu monto total es de ${resultado}`);
-        alert(`Hasta luego ${nombreCliente}, que disfrute de la promocion`);
-    } else {
-        alert("Tu monto a abonar es de " + S23 || S22 || S21);
-        alert(`Hasta luego ${nombreCliente}, que lo disfrute`);
-    }
+// Función para agregar modelo de celular al carrito
+function AgregarAlCarrito(modelo) {
+    carrito.push(modelo);
+    ActualizarCarrito();
 }
 
-OpcionPromocion()
+AgregarAlCarrito()
 
-let otroModelo = prompt(`${nombreCliente} ¿Quieres elegir otro modelo?`);
-
-function OpcionOtroModelo() {
-    if (otroModelo == "no") {
-        alert(`Hasta luego ${nombreCliente}`);
-    } else {
-        modelo = prompt(`Hola devuelta ${nombreCliente} ingrese el nombreCliente de los 3 modelos disponibles: "S23", "S22", "S21"`);
-    }
-    return modelo;
+// Ejemplo de uso de la función agregarAlCarrito
+let modeloElegido = prompt(`Hola pelotudo ${nombreCliente}, actualmente contamos con el stock de estos productos:
+    1). S21
+    2). S22
+    3). S23
+    Por favor ingrese el número correspondiente al modelo que desea adquirir.`);
+if (modeloElegido == "1") {
+    AgregarAlCarrito(celular21);
+} else if (modeloElegido == "2") {
+    AgregarAlCarrito(celular22);
+} else if (modeloElegido == "3") {
+    AgregarAlCarrito(celular23);
+} else {
+    alert("Opción incorrecta");
 }
