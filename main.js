@@ -36,9 +36,27 @@ class Samsung {
             this.cantidad -= 1;
             if (this.cantidad == 0) {
                 alert(`El modelo ${this.nombre} ya no tiene stock disponible`);
+                // Cuando la cantidad del modelo elegido por el cliente es 0, se busca si hay otros modelos con stock disponible para ofrecerlos
+                let otrosModelos = celularesInfo.filter((modelo) => modelo.Nombre != this.nombre && modelo.Cantidad > 0);
+                if (otrosModelos.length > 0) {
+                    let mensaje = `Sin embargo, estos modelos pueden sustituirlo:\n\n`;
+                    otrosModelos.forEach((modelo) => {
+                        mensaje += `${modelo.Nombre} - Precio: ${modelo.Precio}\n`;
+                    });
+                    alert(mensaje);
+                }
             }
         } else {
             alert(`Lo sentimos, el modelo ${this.nombre} ya no tiene stock disponible`);
+            // Cuando la cantidad del modelo elegido por el cliente es 0, se busca si hay otros modelos con stock disponible para ofrecerlos
+            let otrosModelos = celularesInfo.filter((modelo) => modelo.Nombre != this.nombre && modelo.Cantidad > 0);
+            if (otrosModelos.length > 0) {
+                let mensaje = `Sin embargo, estos modelos pueden sustituirlo:\n\n`;
+                otrosModelos.forEach((modelo) => {
+                    mensaje += `${modelo.Nombre} - Precio: ${modelo.Precio}\n`;
+                });
+                alert(mensaje);
+            }
         }
     }
 }
@@ -146,7 +164,7 @@ function ComprarCelular() {
         modeloElegido = celular22;
     } else if (eligeUnModelo == "3") {
         modeloElegido = celular23;
-    }else{
+    } else {
         alert("Opción incorrecta");
     }
 
