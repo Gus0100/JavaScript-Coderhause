@@ -32,7 +32,14 @@ class Samsung {
     }
 
     vender() {
-        this.cantidad -= 1;
+        if (this.cantidad > 0) {
+            this.cantidad -= 1;
+            if (this.cantidad == 0) {
+                alert(`El modelo ${this.nombre} ya no tiene stock disponible`);
+            }
+        } else {
+            alert(`Lo sentimos, el modelo ${this.nombre} ya no tiene stock disponible`);
+        }
     }
 }
 
@@ -204,19 +211,3 @@ function AgregarAlCarrito(modelo) {
 }
 
 AgregarAlCarrito()
-
-// Ejemplo de uso de la función agregarAlCarrito
-let modeloElegido = prompt(`Hola pelotudo ${nombreCliente}, actualmente contamos con el stock de estos productos:
-    1). S21
-    2). S22
-    3). S23
-    Por favor ingrese el número correspondiente al modelo que desea adquirir.`);
-if (modeloElegido == "1") {
-    AgregarAlCarrito(celular21);
-} else if (modeloElegido == "2") {
-    AgregarAlCarrito(celular22);
-} else if (modeloElegido == "3") {
-    AgregarAlCarrito(celular23);
-} else {
-    alert("Opción incorrecta");
-}
